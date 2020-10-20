@@ -1,6 +1,6 @@
 // SimpleMCMain1.cpp
 //
-// Basic procedural implementation of a price for a vanilla call option.
+// Basic procedural implementation of a pricer for a vanilla call option.
 
 //require Random1.cpp
 

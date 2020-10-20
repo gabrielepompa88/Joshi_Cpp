@@ -1,3 +1,7 @@
+// Random1.cpp
+//
+// Routines to generate N(0,1) rvs.
+
 #include "Random1.h"
 #include <cstdlib>
 #include <cmath>
