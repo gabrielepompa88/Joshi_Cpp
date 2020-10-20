@@ -1,3 +1,7 @@
+// SimpleMCMain1.cpp
+//
+// Basic procedural implementation of a price for a vanilla call option.
+
 //require Random1.cpp
 
 #include "Random1.h"
@@ -14,9 +18,9 @@ double SimpleMonteCarlo1(double Expiry,
 {
     double variance = Vol * Vol * Expiry;
     double rootVariance = sqrt(variance);
-    double itoVorrelation = -0.5 * variance;
+    double itoCorrection = -0.5 * variance;
 
-    double movedSpot = Spot * exp(r * Expiry + itoVorrelation);//compute first to recude call exp()
+    double movedSpot = Spot * exp(r * Expiry + itoCorrection);//compute first to recude call exp()
     double thisSpot;
     double runningSum = 0;
 
