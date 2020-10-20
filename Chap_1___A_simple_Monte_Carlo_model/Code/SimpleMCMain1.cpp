@@ -17,24 +17,24 @@ double SimpleMonteCarlo1(double Expiry,
     unsigned long NumberOfPath)
 {
     double variance = Vol * Vol * Expiry;
-    double rootVariance = sqrt(variance);
+    double rootVariance = std::sqrt(variance);
     double itoCorrection = -0.5 * variance;
 
-    double movedSpot = Spot * exp(r * Expiry + itoCorrection);//compute first to recude call exp()
+    double movedSpot = Spot * std::exp(r * Expiry + itoCorrection);//compute first to recude call exp()
     double thisSpot;
     double runningSum = 0;
 
     for (unsigned long i = 0; i < NumberOfPath; i++)
     {
         double thisGaussian = GetOneGaussianByBoxMuller();
-        thisSpot = movedSpot * exp(rootVariance * thisGaussian);
+        thisSpot = movedSpot * std::exp(rootVariance * thisGaussian);
         double thisPayoff = thisSpot - Strike;
         thisPayoff = thisPayoff > 0 ? thisPayoff : 0;
         runningSum += thisPayoff;
     }
 
     double mean = runningSum / NumberOfPath;
-    mean *= exp(-r * Expiry);
+    mean *= std::exp(-r * Expiry);
     return mean;
 }
 
