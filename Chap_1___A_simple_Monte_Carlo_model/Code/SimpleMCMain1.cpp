@@ -66,12 +66,12 @@ int main()
     std::cout << "\n Number of paths\n";
     std::cin >> NumberOfPath;
 
-    double result = SimpleMonteCarlo1(Expiry,
+    double result{ SimpleMonteCarlo1(Expiry,
         Strike,
         Spot,
         Vol,
         r,
-        NumberOfPath);
+        NumberOfPath) };
     std::cout << "the price is " << result << "\n";
 
     return 0;
