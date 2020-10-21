@@ -11,8 +11,8 @@
 
 enum class OptionType
 {
-    CALL,
-    PUT
+    call,
+    put
 };
 
 //function doing the MC simulation
@@ -39,10 +39,10 @@ double SimpleMonteCarlo1(double Expiry,
         thisSpot = movedSpot * std::exp(rootVariance * thisGaussian);
         switch (CallOrPut)
         {
-        case OptionType::CALL:
+        case OptionType::call:
             thisPayoff = thisSpot - Strike;
             break;
-        case OptionType::PUT:
+        case OptionType::put:
             thisPayoff = Strike - thisSpot;
             break;
         default:
@@ -79,10 +79,10 @@ int main()
     switch (optionTypeSelector)
     {
     case 0:
-        optionType = OptionType::CALL;
+        optionType = OptionType::call;
         break;
     case 1:
-        optionType = OptionType::PUT;
+        optionType = OptionType::put;
         break;
     default:
         throw "Unknown contractSelector...";
