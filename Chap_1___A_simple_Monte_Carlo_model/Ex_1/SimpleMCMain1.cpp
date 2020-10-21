@@ -8,9 +8,8 @@
 #include "Random1.h"
 #include <iostream>
 #include <cmath>
-#include <string>
 
-enum class Contract
+enum class OptionType
 {
     CALL,
     PUT
@@ -23,7 +22,7 @@ double SimpleMonteCarlo1(double Expiry,
     double Vol,
     double r,
     unsigned long NumberOfPath,
-    Contract CallOrPut)
+    OptionType CallOrPut)
 {
     double variance{ Vol * Vol * Expiry };
     double rootVariance{ std::sqrt(variance) };
@@ -40,10 +39,10 @@ double SimpleMonteCarlo1(double Expiry,
         thisSpot = movedSpot * std::exp(rootVariance * thisGaussian);
         switch (CallOrPut)
         {
-        case Contract::CALL:
+        case OptionType::CALL:
             thisPayoff = thisSpot - Strike;
             break;
-        case Contract::PUT:
+        case OptionType::PUT:
             thisPayoff = Strike - thisSpot;
             break;
         default:
@@ -61,7 +60,7 @@ double SimpleMonteCarlo1(double Expiry,
 
 int main()
 {
-    Contract contractKind;
+    OptionType optionType;
     double Expiry;
     double Strike;
     double Spot;
@@ -70,20 +69,20 @@ int main()
     unsigned long NumberOfPath;
 
     //read in parameters
-    int contractSelector;
+    int optionTypeSelector;
     do
     {
         std::cout << "\nKind of contract? (press 0 for 'calls', 1 for 'puts')\n";
-        std::cin >> contractSelector;
-    } while ((contractSelector != 0) & (contractSelector != 1));
+        std::cin >> optionTypeSelector;
+    } while ((optionTypeSelector != 0) & (optionTypeSelector != 1));
 
-    switch (contractSelector)
+    switch (optionTypeSelector)
     {
     case 0:
-        contractKind = Contract::CALL;
+        optionType = OptionType::CALL;
         break;
     case 1:
-        contractKind = Contract::PUT;
+        optionType = OptionType::PUT;
         break;
     default:
         throw "Unknown contractSelector...";
@@ -113,7 +112,7 @@ int main()
         Vol,
         r,
         NumberOfPath,
-        static_cast<Contract>(contractKind)) };
+        static_cast<OptionType>(optionType)) };
     std::cout << "the price is " << result << "\n";
 
     return 0;
