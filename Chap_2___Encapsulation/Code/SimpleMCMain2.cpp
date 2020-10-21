@@ -15,16 +15,16 @@ int main()
     unsigned long NumberOfPath;
 
     //read in parameters
-    int contractSelector;
+    int optionTypeSelector;
     do
     {
-        std::cout << "\nKind of contract? (press 0 for 'calls', 1 for 'puts')\n";
-        std::cin >> contractSelector;
-    } while ((contractSelector != 0) & (contractSelector != 1));
+        std::cout << "\nKind of option? (press 0 for 'calls', 1 for 'puts')\n";
+        std::cin >> optionTypeSelector;
+    } while ((optionTypeSelector != 0) & (optionTypeSelector != 1));
 
     PayOff::OptionType theOptionsType;
 
-    switch (contractSelector)
+    switch (optionTypeSelector)
     {
     case 0:
         theOptionsType = PayOff::OptionType::call;
@@ -33,7 +33,7 @@ int main()
         theOptionsType = PayOff::OptionType::put;
         break;
     default:
-        throw "Unknown contractSelector...";
+        throw "Unknown option type found...";
     }
 
     std::cout << "\nEnter expiry\n";
