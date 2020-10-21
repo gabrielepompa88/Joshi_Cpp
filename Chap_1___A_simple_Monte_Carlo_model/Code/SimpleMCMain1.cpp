@@ -16,24 +16,24 @@ double SimpleMonteCarlo1(double Expiry,
     double r,
     unsigned long NumberOfPath)
 {
-    double variance = Vol * Vol * Expiry;
-    double rootVariance = std::sqrt(variance);
-    double itoCorrection = -0.5 * variance;
+    double variance{ Vol * Vol * Expiry };
+    double rootVariance{ std::sqrt(variance) };
+    double itoCorrection{ -0.5 * variance };
 
-    double movedSpot = Spot * std::exp(r * Expiry + itoCorrection);//compute first to recude call exp()
+    double movedSpot{ Spot * std::exp(r * Expiry + itoCorrection) }; //compute first to reduce call exp()
     double thisSpot;
-    double runningSum = 0;
+    double runningSum{0};
 
     for (unsigned long i = 0; i < NumberOfPath; i++)
     {
-        double thisGaussian = GetOneGaussianByBoxMuller();
+        double thisGaussian{ GetOneGaussianByBoxMuller() };
         thisSpot = movedSpot * std::exp(rootVariance * thisGaussian);
-        double thisPayoff = thisSpot - Strike;
+        double thisPayoff{ thisSpot - Strike };
         thisPayoff = thisPayoff > 0 ? thisPayoff : 0;
         runningSum += thisPayoff;
     }
 
-    double mean = runningSum / NumberOfPath;
+    double mean{ runningSum / NumberOfPath };
     mean *= std::exp(-r * Expiry);
     return mean;
 }
@@ -73,9 +73,6 @@ int main()
         r,
         NumberOfPath);
     std::cout << "the price is " << result << "\n";
-
-    double tmp;
-    std::cin >> tmp;
 
     return 0;
 
