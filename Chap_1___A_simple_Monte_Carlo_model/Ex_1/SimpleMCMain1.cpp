@@ -85,7 +85,7 @@ int main()
         optionType = OptionType::put;
         break;
     default:
-        throw "Unknown optionTypeSelector...";
+        throw "Unknown option type found...";
     }
 
     std::cout << "\nEnter expiry\n";
