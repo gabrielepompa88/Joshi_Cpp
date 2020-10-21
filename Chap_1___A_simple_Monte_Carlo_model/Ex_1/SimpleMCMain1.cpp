@@ -47,7 +47,7 @@ double SimpleMonteCarlo1(double Expiry,
             thisPayoff = Strike - thisSpot;
             break;
         default:
-            std::cout << "Unknown contract kind\n";
+            throw "Unknown contract kind...";
         }
         
         thisPayoff = thisPayoff > 0 ? thisPayoff : 0;
@@ -86,7 +86,7 @@ int main()
         contractKind = Contract::PUT;
         break;
     default:
-        std::cout << "Unknown contract kind\n";
+        throw "Unknown contractSelector...";
     }
 
     std::cout << "\nEnter expiry\n";
