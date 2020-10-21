@@ -1,6 +1,6 @@
 // SimpleMCMain2.cpp
 //
-// main from Chap 2 "Encapsulation":uses PayOff class.
+// main from Chap 2 "Encapsulation": uses PayOff class as an example of encapsulation.
 
 #include "SimpleMC.h"
 #include <iostream>
