@@ -3,7 +3,7 @@
 // Basic procedural implementation of a pricer for a vanilla call and put options.
 // enum class Contract is an additional parameter to SimpleMonteCarlo1 to discriminate between calls and puts.
 
-//require Random1.cpp
+//require ../Code/Random1.cpp
 
 #include "Random1.h"
 #include <iostream>
