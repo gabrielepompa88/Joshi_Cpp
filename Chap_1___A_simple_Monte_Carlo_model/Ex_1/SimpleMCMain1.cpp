@@ -22,7 +22,7 @@ double SimpleMonteCarlo1(double Expiry,
     double Vol,
     double r,
     unsigned long NumberOfPath,
-    OptionType CallOrPut)
+    OptionType TheOptionsType)
 {
     double variance{ Vol * Vol * Expiry };
     double rootVariance{ std::sqrt(variance) };
@@ -37,7 +37,7 @@ double SimpleMonteCarlo1(double Expiry,
     {
         double thisGaussian{ GetOneGaussianByBoxMuller() };
         thisSpot = movedSpot * std::exp(rootVariance * thisGaussian);
-        switch (CallOrPut)
+        switch (TheOptionsType)
         {
         case OptionType::call:
             thisPayoff = thisSpot - Strike;
