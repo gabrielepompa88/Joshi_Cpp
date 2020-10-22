@@ -15,32 +15,14 @@ int main()
     unsigned long NumberOfPath;
 
     //read in parameters
-    int optionTypeSelector;
-    do
-    {
-        std::cout << "\nKind of option? (press 0 for 'calls', 1 for 'puts')\n";
-        std::cin >> optionTypeSelector;
-    } while ((optionTypeSelector != 0) & (optionTypeSelector != 1));
-
     std::cout << "\nEnter expiry\n";
     std::cin >> Expiry;
 
     std::cout << "\nEnter Strike\n";
     std::cin >> Strike;
 
-    PayOff* thePayOffPtr;
-
-    switch (optionTypeSelector)
-    {
-    case 0:
-        thePayOffPtr = new PayOffCall(Strike);
-        break;
-    case 1:
-        thePayOffPtr = new PayOffPut(Strike);
-        break;
-    default:
-        throw "Unknown option type found...";
-    }
+    const PayOffCall callPayOff(Strike);
+    const PayOffPut putPayOff(Strike);
 
     std::cout << "\nEnter spot\n";
     std::cin >> Spot;
@@ -54,16 +36,24 @@ int main()
     std::cout << "\n Number of paths\n";
     std::cin >> NumberOfPath;
 
-    double result{ SimpleMonteCarlo2(
-        *thePayOffPtr,
+    double resultCall{ SimpleMonteCarlo2(
+        callPayOff,
         Expiry,
         Spot,
         Vol,
         r,
         NumberOfPath) };
-    std::cout << "the price is " << result << "\n";
 
-    delete thePayOffPtr;
+    double resultPut{ SimpleMonteCarlo2(
+        putPayOff,
+        Expiry,
+        Spot,
+        Vol,
+        r,
+        NumberOfPath) };
+
+    std::cout << "the price of the call option is " << resultCall << "\n";
+    std::cout << "the price of the put option is " << resultPut << "\n";
 
     return 0;
 
