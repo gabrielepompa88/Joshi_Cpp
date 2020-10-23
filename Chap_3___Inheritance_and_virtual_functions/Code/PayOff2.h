@@ -15,7 +15,7 @@ class PayOffCall : public PayOff {
 
 public:
 	PayOffCall(double Strike_);
-	virtual double operator() (double Spot) const;
+	virtual double operator() (double Spot) const override;
 	virtual ~PayOffCall() {};
 
 private:
@@ -26,7 +26,7 @@ class PayOffPut : public PayOff {
 
 public:
 	PayOffPut(double Strike_);
-	virtual double operator() (double Spot) const;
+	virtual double operator() (double Spot) const override;
 	virtual ~PayOffPut() {};
 
 private:
