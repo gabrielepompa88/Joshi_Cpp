@@ -7,7 +7,7 @@ class PayOffCallPowerOption: public PayOff {
 
 public:
 	PayOffCallPowerOption(double Strike_, int Power_);
-	virtual double operator() (double Spot) const;
+	virtual double operator() (double Spot) const override;
 	virtual ~PayOffCallPowerOption() {};
 
 private:
@@ -19,7 +19,7 @@ class PayOffPutPowerOption : public PayOff {
 
 public:
 	PayOffPutPowerOption(double Strike_, int Power_);
-	virtual double operator() (double Spot) const;
+	virtual double operator() (double Spot) const override;
 	virtual ~PayOffPutPowerOption() {};
 
 private:
