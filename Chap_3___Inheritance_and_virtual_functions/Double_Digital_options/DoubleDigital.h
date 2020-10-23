@@ -7,7 +7,7 @@ class PayOffDoubleDigital : public PayOff {
 
 public:
 	PayOffDoubleDigital(double LowerLevel_, double UpperLevel_);
-	virtual double operator() (double Spot) const;
+	virtual double operator() (double Spot) const override;
 	virtual ~PayOffDoubleDigital() {};
 
 private:
