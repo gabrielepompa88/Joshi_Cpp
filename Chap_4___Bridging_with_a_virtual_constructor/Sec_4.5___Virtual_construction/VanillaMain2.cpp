@@ -1,4 +1,4 @@
-// SimpleMCMain3.cpp
+// VanillaMain2.cpp
 //
 // main from Section 4.3 "Bridging with a virtual constructor" - "virtual constructor"
 // It uses a VanillaOption class, using a virtually copy-constructed PayOff class.
