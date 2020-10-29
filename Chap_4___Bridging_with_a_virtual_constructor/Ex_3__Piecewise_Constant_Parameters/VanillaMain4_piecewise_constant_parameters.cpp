@@ -55,7 +55,7 @@ int main()
         r.push_back(std::make_pair(T_piece * (i+1), r_piece));
     }
 
-    std::cout << "the short-rate is:\n";
+    std::cout << "\nthe short-rate is:\n";
     std::cout << r[0].second << " in interval [" << 0 << ", " << T_piece << "] years" << "\n";
 
     for (int i = 1; i < N; i++)
