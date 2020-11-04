@@ -100,7 +100,7 @@ ParametersPiecewiseConstant<T_type, V_type>::ParametersPiecewiseConstant(std::in
 	piecesNum = static_cast<int>(list.size());
 
 	// initialize Constant vector from list
-	for (auto& element : list)
+	for (const auto& element : list)
 	{
 		Constant.push_back(std::make_pair(element.first, element.second));
 		ConstantSquare.push_back(std::make_pair(element.first, element.second * element.second));
