@@ -38,10 +38,14 @@ int main()
     // volatility parameter as ParametersConstant object
     ParametersConstant VolParam{ Vol };
 
+    // short-rate as vector of (time, value) pairs
+
+    /*
+    // VERSION 1: using ParametersPiecewiseConstant accepting a std::vector
+    
     std::cout << "\nEnter how many intervals [T_i,T_j] you want\n";
     std::cin >> N;
 
-    // short-rate as vector of (time, value) pairs
     std::vector<std::pair<double, double>> r{};
 
     double r_piece{};
@@ -57,6 +61,18 @@ int main()
 
     // short-rate parameter as ParametersPiecewiseConstant object
     ParametersPiecewiseConstant<double,double> rParam{ r };
+    */
+
+    // VERSION 2: using ParametersPiecewiseConstant accepting a std::initializer_list
+    double T_piece{ Expiry / 3 };
+
+    ParametersPiecewiseConstant<double, double> rParam
+    {
+        std::make_pair(T_piece, 0.015),
+        std::make_pair(T_piece*2, 0.02),
+        std::make_pair(T_piece*3, 0.025)
+    };
+
     std::cout << "\nthe short-rate is:\n";
     std::cout << rParam; // calling overloaded operator<<
 

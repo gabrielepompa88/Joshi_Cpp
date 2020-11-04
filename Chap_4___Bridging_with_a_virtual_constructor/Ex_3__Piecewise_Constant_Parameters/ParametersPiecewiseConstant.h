@@ -15,7 +15,8 @@
 #include "Parameters.h"
 #include <vector>
 #include <utility> // for std::pair, std::make_pair
-#include <ostream>
+#include <initializer_list> // for std::initializer_list
+#include <iostream>
 
 template<class T_type, class V_type>
 class ParametersPiecewiseConstant : public ParametersInner // another concrete Implementor
@@ -30,6 +31,9 @@ public:
 
 	// constructor
 	ParametersPiecewiseConstant(std::vector<std::pair<T_type, V_type>> constant);
+
+	// constructor accepting a std::initializer_list as input
+	ParametersPiecewiseConstant(std::initializer_list<std::pair<T_type, V_type>> list);
 
 	// virtual copy constructor overriden
 	// returning the derived class pointer is allowed
@@ -76,12 +80,30 @@ template<class T_type, class V_type>
 ParametersPiecewiseConstant<T_type, V_type>::ParametersPiecewiseConstant(std::vector<std::pair<T_type, V_type>> constant):
 	Constant(constant)
 {
+	std::cout << "\nCalling the std::vector constructor\n";
+
 	piecesNum = Constant.size() ;
 
 	// ConstantSquare build from Constant, leaving times untouched and squaring values
 	for (int i = 0; i < piecesNum; i++)
 	{
 		ConstantSquare.push_back(std::make_pair(Constant[i].first, Constant[i].second * Constant[i].second));
+	}
+}
+
+// constructor accepting a std::initializer_list as input
+template<class T_type, class V_type>
+ParametersPiecewiseConstant<T_type, V_type>::ParametersPiecewiseConstant(std::initializer_list<std::pair<T_type, V_type>> list)
+{
+	std::cout << "\nCalling the std::initializer_list constructor\n";
+
+	piecesNum = static_cast<int>(list.size());
+
+	// initialize Constant vector from list
+	for (auto& element : list)
+	{
+		Constant.push_back(std::make_pair(element.first, element.second));
+		ConstantSquare.push_back(std::make_pair(element.first, element.second * element.second));
 	}
 }
 
